@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from '../../../_models/user';
 
 @Component({
     selector: 'app-header',
@@ -11,12 +12,13 @@ export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
 
     constructor(private translate: TranslateService, public router: Router) {
-
-        this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
+     
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
-
+        // let userData = JSON.parse(localStorage.getItem('currentUser'));
+        // this.userName = userData.firstName.toString() + " " + userData.lastName.toString();
+        // console.log("Uradio: ", userData);
+        // console.log("Uradio: ", this.userName);
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -28,7 +30,20 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+     userName: any = "";
+
+    ngOnInit() {
+
+        this.getUserData();
+    }
+
+    getUserData(): void{
+        let userData = JSON.parse(localStorage.getItem('currentUser'));
+        this.userName = userData.firstName.toString() + " " + userData.lastName.toString();
+        console.log("Uradio: ", userData);
+        console.log("Uradio: ", this.userName);
+
+    }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');
@@ -46,6 +61,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
+        localStorage.removeItem('currentUser');
         localStorage.removeItem('isLoggedin');
     }
 

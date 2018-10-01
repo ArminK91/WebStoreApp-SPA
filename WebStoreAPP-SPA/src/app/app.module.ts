@@ -19,6 +19,8 @@ import { AppConfig } from '../app/app.config';
 import { AlertService } from '../app/_services/alert.service';
 import { AuthenticationService } from '../app/_services/authentication.service';
 import { UserService } from '../app/_services/user.service';
+import { LayoutModule } from './layout/layout.module';
+import { DashboardModule } from './layout/dashboard/dashboard.module';
 //import { routing } from './app.routing';
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -39,13 +41,14 @@ export const createTranslateLoader = (http: HttpClient) => {
         FormsModule,
         HttpModule,
         HttpClientModule,
-        // TranslateModule.forRoot({
-        //     loader: {
-        //         provide: TranslateLoader,
-        //         useFactory: createTranslateLoader,
-        //         deps: [HttpClient]
-        //     }
-        // }),
+        LayoutModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
         AppRoutingModule
     ],
     declarations: [AppComponent,

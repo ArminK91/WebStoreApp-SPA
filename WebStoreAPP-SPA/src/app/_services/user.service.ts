@@ -21,6 +21,12 @@ export class UserService {
     }
  
     update(user: User) {
+
+        const headers = new Headers();
+        headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Access-Control-Allow-Origin', '*');
+
         return this.http.put(this.config.apiUrl + '/api/identity/' + user._id, user, this.jwt());
     }
  
@@ -35,6 +41,11 @@ export class UserService {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            
+            headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Access-Control-Allow-Origin', '*');
+            
             return new RequestOptions({ headers: headers });
         }
     }
