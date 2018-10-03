@@ -8,12 +8,15 @@ import { AuthGuard } from './shared';
 import { LayoutComponent } from './layout/layout.component';
 
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
+import { CreateproductComponent } from './createproduct/createproduct.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: SignupComponent },
     { path: 'dashboard', component: LayoutComponent, canActivate: [AuthGuard]  },
+    { path: 'dashboard/createproduct', component: CreateproductComponent },
+
     //{ path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
     //{ path: 'dashboard', component: LayoutComponent, canActivate: [AuthGuard] },
 

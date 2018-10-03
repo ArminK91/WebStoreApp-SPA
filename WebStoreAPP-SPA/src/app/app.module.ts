@@ -21,6 +21,10 @@ import { AuthenticationService } from '../app/_services/authentication.service';
 import { UserService } from '../app/_services/user.service';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './layout/dashboard/dashboard.module';
+import { CreateproductComponent } from './createproduct/createproduct.component';
+import { ProductlistComponent } from './productlist/productlist.component';
+import { UserproductlistComponent } from './userproductlist/userproductlist.component';
+import { PreviewproductComponent } from './previewproduct/previewproduct.component';
 //import { routing } from './app.routing';
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -55,7 +59,11 @@ export const createTranslateLoader = (http: HttpClient) => {
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        SignupComponent],
+        SignupComponent,
+        CreateproductComponent,
+        ProductlistComponent,
+        UserproductlistComponent,
+        PreviewproductComponent],
     providers: [AppConfig,
         AuthGuard,
         AlertService,
