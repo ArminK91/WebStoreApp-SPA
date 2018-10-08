@@ -6,28 +6,22 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './shared';
 import { LayoutComponent } from './layout/layout.component';
-
-import { DashboardComponent } from './layout/dashboard/dashboard.component';
-import { CreateproductComponent } from './createproduct/createproduct.component';
+//import { DashboardComponent } from './layout/dashboard/dashboard.component';
+import { CreateproductComponent } from './layout/dashboard/components/createproduct/createproduct.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: SignupComponent },
-    { path: 'dashboard', component: LayoutComponent, canActivate: [AuthGuard]  },
-    { path: 'dashboard/createproduct', component: CreateproductComponent },
+    { path: 'dashboard', component: LayoutComponent  },
+    { path: 'createproduct', component: CreateproductComponent },
 
-    //{ path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
-    //{ path: 'dashboard', component: LayoutComponent, canActivate: [AuthGuard] },
 
-    // { path: 'error', loadChildren: './server-error/server-error.module#ServerErrorModule' },
-    // { path: 'access-denied', loadChildren: './access-denied/access-denied.module#AccessDeniedModule' },
-    // { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
     { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({
-    //declarations:[HomeComponent, LoginComponent,DashboardComponent ],
+    declarations:[ ],
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })

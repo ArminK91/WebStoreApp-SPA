@@ -3,13 +3,14 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
  
 import { AppConfig } from '../app.config';
 import { Product } from '../_models/product';
- 
+import { GeneralService } from '../_services/general.service';
+
 @Injectable()
 export class ProductService {
-    constructor(private http: Http, private config: AppConfig) { }
+    constructor(private http: Http, private config: AppConfig, private genServ: GeneralService) { }
  
     getAllProductForUser() {
-        return this.http.get(this.config.apiUrl + '/api/products').map((response: Response) => response.json());
+        return this.http.get(this.genServ.prepareRequest() + '/api/products').map((response: Response) => response.json());
     }
  
     getProductById(_id: number) {

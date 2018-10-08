@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { CreateproductComponent } from './dashboard/components/createproduct/createproduct.component';
 
 const routes: Routes = [
     {
@@ -9,12 +10,10 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-            { path: 'forms', loadChildren: './form/form.module#FormModule' },
-            { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
-            { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
+            {path: 'createproduct', component: CreateproductComponent}   
 
         ]
+        
     }
 ];
 

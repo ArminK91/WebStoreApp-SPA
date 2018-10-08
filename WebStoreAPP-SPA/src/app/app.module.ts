@@ -10,8 +10,8 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-//import { routing } from './app.routing';
 import { HomeComponent } from './home/home.component';
+import { CreateproductComponent } from './layout/dashboard/components/createproduct/createproduct.component';
 import { AlertComponent } from '../app/_directives/alert/alert.component';
 import { LoginComponent } from '../app/login/login.component';
 import { SignupComponent } from '../app/signup/signup.component';
@@ -21,20 +21,21 @@ import { AuthenticationService } from '../app/_services/authentication.service';
 import { UserService } from '../app/_services/user.service';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './layout/dashboard/dashboard.module';
-import { CreateproductComponent } from './createproduct/createproduct.component';
 import { ProductlistComponent } from './productlist/productlist.component';
 import { UserproductlistComponent } from './userproductlist/userproductlist.component';
 import { PreviewproductComponent } from './previewproduct/previewproduct.component';
-//import { routing } from './app.routing';
+import { GeneralService } from './_services/general.service';
+import { ProductService } from './_services/product.service';
+//import { routing } from '../app.routing';
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
-    /* for development
+
     return new TranslateHttpLoader(
-        http,
-        '/start-angular/SB-Admin-BS4-Angular-6/master/dist/assets/i18n/',
-        '.json'
-    ); */
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+        http
+        // '/start-angular/SB-Admin-BS4-Angular-6/master/dist/assets/i18n/',
+        //'.json'
+    ); 
+    //return new TranslateHttpLoader(http);
 };
 
 @NgModule({
@@ -46,6 +47,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         HttpModule,
         HttpClientModule,
         LayoutModule,
+        DashboardModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -60,15 +62,17 @@ export const createTranslateLoader = (http: HttpClient) => {
         HomeComponent,
         LoginComponent,
         SignupComponent,
-        CreateproductComponent,
         ProductlistComponent,
+        CreateproductComponent,
         UserproductlistComponent,
         PreviewproductComponent],
     providers: [AppConfig,
         AuthGuard,
         AlertService,
         AuthenticationService,
-        UserService],
+        UserService,
+    GeneralService,
+ProductService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
