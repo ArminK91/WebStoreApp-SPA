@@ -3,7 +3,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule } from '@angular/http';
@@ -21,12 +20,53 @@ import { AuthenticationService } from '../app/_services/authentication.service';
 import { UserService } from '../app/_services/user.service';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './layout/dashboard/dashboard.module';
-import { ProductlistComponent } from './productlist/productlist.component';
-import { UserproductlistComponent } from './userproductlist/userproductlist.component';
-import { PreviewproductComponent } from './previewproduct/previewproduct.component';
+import { ProductlistComponent } from './layout/dashboard/productlist/productlist.component';
+import { UserproductlistComponent } from './layout/dashboard/components/userproductlist/userproductlist.component';
+//import { PreviewproductComponent } from './previewproduct/previewproduct.component';
 import { GeneralService } from './_services/general.service';
 import { ProductService } from './_services/product.service';
-//import { routing } from '../app.routing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+//import { MatStepperModule, MatHorizontalStepper, MatStep } from '@angular/material/stepper';
+import { MatRippleModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+import {
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatStepperModule,
+    MatNativeDateModule,
+    MAT_DATE_FORMATS
+  } from '@angular/material';
+
+
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
 
@@ -42,12 +82,19 @@ export const createTranslateLoader = (http: HttpClient) => {
     imports: [
         CommonModule,
         BrowserModule,
-        BrowserAnimationsModule,
         FormsModule,
         HttpModule,
         HttpClientModule,
         LayoutModule,
-        DashboardModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+        //DashboardModule,
+        MatStepperModule,
+        //MatRippleModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -57,15 +104,47 @@ export const createTranslateLoader = (http: HttpClient) => {
         }),
         AppRoutingModule
     ],
+    exports: [
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRippleModule,
+        MatDialogModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatMenuModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatRadioModule,
+        MatRippleModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSlideToggleModule,
+        MatSliderModule,
+        MatSnackBarModule,
+        MatSortModule,
+        MatStepperModule,
+        MatTabsModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatNativeDateModule
+    ],
     declarations: [AppComponent,
         AlertComponent,
         HomeComponent,
         LoginComponent,
+        //MatHorizontalStepper,
+        //MatStep,
         SignupComponent,
-        ProductlistComponent,
+        //ProductlistComponent,
         CreateproductComponent,
-        UserproductlistComponent,
-        PreviewproductComponent],
+        UserproductlistComponent],
+        //PreviewproductComponent],
     providers: [AppConfig,
         AuthGuard,
         AlertService,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GeneralService } from '../_services/general.service';
+import { GeneralService } from '../../../../_services/general.service';
 
 @Component({
   selector: 'app-userproductlist',
@@ -14,8 +14,9 @@ export class UserproductlistComponent implements OnInit {
   }
 
   getAllProductsForUser(){
-    
+
   }
+  
 
   ngOnInit() {
   }

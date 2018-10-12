@@ -22,12 +22,6 @@ export class ProductService {
     }
  
     updateProduct(product: Product) {
-
-        const headers = new Headers();
-        headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        headers.append('Access-Control-Allow-Methods', 'GET');
-        headers.append('Access-Control-Allow-Origin', '*');
-
         return this.http.put(this.config.apiUrl + '/api/products', product);
     }
  

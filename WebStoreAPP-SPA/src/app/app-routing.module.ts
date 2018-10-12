@@ -6,16 +6,12 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './shared';
 import { LayoutComponent } from './layout/layout.component';
-//import { DashboardComponent } from './layout/dashboard/dashboard.component';
-import { CreateproductComponent } from './layout/dashboard/components/createproduct/createproduct.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: SignupComponent },
     { path: 'dashboard', component: LayoutComponent  },
-    { path: 'createproduct', component: CreateproductComponent },
-
 
     { path: '**', redirectTo: 'not-found' }
 ];

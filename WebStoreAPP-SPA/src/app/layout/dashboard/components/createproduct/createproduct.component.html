@@ -1,3 +1,57 @@
-<p>
-  createproduct works!
-</p>
+<div class="chat-panel card card-default">
+    <div class="card-header">
+        <!-- <i class="fa fa-comments fa-fw"></i> -->
+        Create New Product
+        <div class=" pull-right" ngbDropdown>
+            <a class="btn btn-primary btn-sm" routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
+                <span>{{ 'Dashboard' }}</span>
+            </a>
+           
+        </div>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="card-body">
+                  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                      <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Fill out your name</ng-template>
+                        <mat-form-field>
+                          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                      <form [formGroup]="secondFormGroup">
+                        <ng-template matStepLabel>Fill out your address</ng-template>
+                        <mat-form-field>
+                          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step>
+                      <ng-template matStepLabel>Done</ng-template>
+                      You are now done.
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button (click)="stepper.reset()">Reset</button>
+                      </div>
+                    </mat-step>
+                  </mat-horizontal-stepper>
+                  
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+       
+    </div>
+    <!-- /.card-footer -->
+</div>
+
+
+
