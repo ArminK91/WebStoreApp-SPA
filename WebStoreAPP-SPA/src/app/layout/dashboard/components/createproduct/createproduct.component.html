@@ -1,57 +1,198 @@
-<div class="chat-panel card card-default">
-    <div class="card-header">
-        <!-- <i class="fa fa-comments fa-fw"></i> -->
-        Create New Product
-        <div class=" pull-right" ngbDropdown>
-            <a class="btn btn-primary btn-sm" routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
-                <span>{{ 'Dashboard' }}</span>
-            </a>
-           
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Dodavanje novog proizvoda
+        <div class="btn-group pull-right" style="padding-top: 2px;">
+            <button type="button" class="btn btn-danger btn-sm" routerLink="/dashboard" [routerLinkActive]="['router-link-active']"><span
+                    class="glyphicon glyphicon-back" aria-hidden="true"></span> Dashboard</button>
         </div>
     </div>
-    <!-- /.panel-heading -->
-    <div class="card-body">
-                  <mat-horizontal-stepper [linear]="isLinear" #stepper>
-                    <mat-step [stepControl]="firstFormGroup">
-                      <form [formGroup]="firstFormGroup">
-                        <ng-template matStepLabel>Fill out your name</ng-template>
-                        <mat-form-field>
-                          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                        </mat-form-field>
-                        <div>
-                          <button mat-button matStepperNext>Next</button>
+    <div class="panel-body">
+        <form [formGroup]="produktForma">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="form-label">Naziv produkta</label>
+                        <input type="text" class="form-control" formControlName="nazivProizvoda" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="form-label">Cijena produkta</label>
+                        <dx-number-box formControlName="cijenaProizvoda" class="form-control" format="KM #,##0.##"
+                            [min]="0"></dx-number-box>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="form-label">Kolicina produkta</label>
+                        <input type="text" class="form-control" formControlName="kolicinaProizvoda" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="form-label">Tip Proizvoda</label>
+                        <select id="tipProizvoda" formControlName="tipProizvoda" class="form-control">
+                            <option *ngFor="let c of sifTipProizvoda"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="form-label">Cijena produkta</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="form-label">Kolicina produkta</label>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="form-label">Opis proizvoda</label>
+                            <textarea class="form-control" formControlName="opisProizvoda" placeholder="Opis proizvoda"
+                                maxlength="4000"></textarea>
                         </div>
-                      </form>
-                    </mat-step>
-                    <mat-step [stepControl]="secondFormGroup">
-                      <form [formGroup]="secondFormGroup">
-                        <ng-template matStepLabel>Fill out your address</ng-template>
-                        <mat-form-field>
-                          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                        </mat-form-field>
-                        <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                          <button mat-button matStepperNext>Next</button>
-                        </div>
-                      </form>
-                    </mat-step>
-                    <mat-step>
-                      <ng-template matStepLabel>Done</ng-template>
-                      You are now done.
-                      <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
-                      </div>
-                    </mat-step>
-                  </mat-horizontal-stepper>
-                  
+                    </div>
+                </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                <div class="form-group pull-right">
+                        <button type="button" (click)="snimiProizvod()" class="btn btn-success btn-sm mr-1">Snimi</button>
+                        <button type="button" (click)="azurirajProizvod()" class="btn btn-success btn-sm mr-1">Azuriraj</button>
+                </div>
+            </div>
+            </div>
+        </form>
     </div>
-    <!-- /.card-body -->
-    <div class="card-footer">
-       
-    </div>
-    <!-- /.card-footer -->
+
+<!-- <div class="panel-body">
+  <form [formGroup]="kolateralForm">
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label class="form-label">Tip ponuđenog kolaterala:</label>
+                  <select class="form-control" formControlName="tipKolaterala" [ngClass]="{'parsley-error':(kolateralForm.controls.tipKolaterala?.errors?.required && formSubmitted)}">
+                      <option *ngFor="let d of sifTipKol" [ngValue]="d?.alijas">{{d?.strval1}}</option>
+                  </select>
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="form-group">
+                  <label class="form-label">Podtip ponuđenog kolaterala:</label>
+                  <select class="form-control" formControlName="potipKolaterala" [ngClass]="{'parsley-error':(kolateralForm.controls.potipKolaterala?.errors?.required && formSubmitted)}">
+                      <option *ngFor="let k of sifPotTipKol" [ngValue]="k?.id">{{k?.strval1}}</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="form-group">
+                  <label class="form-label">Opis kolaterala:</label>
+                  <textarea class="form-control" formControlName="opisKolaterala" placeholder="Opis kolaterala"
+                      [ngClass]="{'parsley-error':(kolateralForm.controls.opisKolaterala?.errors?.required && formSubmitted)}"
+                      maxlength="4000"></textarea>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="form-group">
+                  <label class="form-label">Naziv procjenitelja:</label>
+                  <select class="form-control" formControlName="nazivProcjenitelja">
+                      <option *ngFor="let p of sifProcjenitelji " [ngValue]="p?.sifre">{{p?.stoImeSifre}}</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label class="form-label">Eksterna procijenjena vrijednost kolaterala:</label>
+                  <dx-number-box formControlName="ekstProcijenaVrj" class="form-control" format="KM #,##0.##"
+                      [ngClass]="{'parsley-error':(kolateralForm.controls.ekstProcijenaVrj?.errors?.required && formSubmitted)}">
+                      <dx-validator>
+                          <dxi-validation-rule type="required" message="Eksterna procijenjena vrijednost is required"></dxi-validation-rule>
+                      </dx-validator>
+                  </dx-number-box>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label class="form-label">Vrijednost postojećih tereta BAM:</label>
+                  <dx-number-box formControlName="vrjPostTert" class="form-control" [ngClass]="{'parsley-error':(kolateralForm.controls.vrjPostTert?.errors?.required && formSubmitted)}"
+                      format="KM #,##0.##" [min]="0"></dx-number-box>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div class="form-group">
+                  <label class="form-label">Datum zadnje procijene:</label>
+                  <dx-date-box formControlName="datumZadProcijene" class="form-control" displayFormat="dd.MM.yyyy"
+                      type="date">
+                  </dx-date-box>
+              </div>
+          </div>
+      </div>
+      <hr />
+      <div class="row" [hidden]="disableFormaUnosKol == 1 ? true : false">
+          <div class="col-sm-12">
+              <div class="form-group pull-right">
+                  <button class="btn btn-danger btn-sm mr-1" (click)="zatvoriFormu()"><span class="glyphicon glyphicon-remove"
+                          aria-hidden="true"></span> Zatvori</button>
+                  <button class="btn btn-success btn-sm mr-1" *ngIf="kolateral" (click)="azurirajKolateral()"><span
+                          class="	glyphicon glyphicon-link" aria-hidden="true"></span> Ažuriraj</button>
+                  <button class="btn btn-success btn-sm mr-1" *ngIf="!kolateral" (click)="snimiKolateral()"><span
+                          class="glyphicon glyphicon-ok" aria-hidden="true"></span> Snimi</button>
+              </div>
+          </div>
+      </div>
+
+      <hr />
+      <span class="help-block" style="color:red">Ispunjava Pravna služba</span>
+      <div class="row">
+          <div class="col-sm-12">
+              <app-rsd-kolateral-pr-mis [kolateral]="kolateral" [prikazKomponentu]="disableFormaPravnoMisljenje"></app-rsd-kolateral-pr-mis>
+          </div>
+      </div>
+
+      <hr />
+      <div class="row">
+          <div class="col-sm-12">
+              <app-rsd-kolateral-procjena [kolateral]="kolateral" [prikazKomponentu]="disableFormaTrzProcjena"></app-rsd-kolateral-procjena>
+          </div>
+      </div>
+      <br>
+  </form>
+  <hr />
+  <div class="row">
+      <div class="col-sm-12">
+          <app-rsd-kolateral-lista-dok [zahtjevId]="zahtjevId"></app-rsd-kolateral-lista-dok>
+      </div>
+  </div>
+  <div class="panel panel-default" *ngIf="upload">
+      <div class="panel-heading clearfix">
+          <h4 class="panel-title pull-left">Upload dokumentacije</h4>
+      </div>
+      <div class="panel-body">
+          <div class="row">
+              <div class="col-sm-4 col-sm-offset-5">
+                  <app-file-uploader [headers]="headers" (dokumentUploadovan)="onDokumentUploadovan($event)"></app-file-uploader>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="upload" class="mt-2">
+      <app-rsd-lista-dokumenata #listaDokumenata [label]="'Dokumentacija kolaterala'" [domen]="'2'" [kolateralId]="kolateral.id"></app-rsd-lista-dokumenata>
+  </div>
 </div>
 
 
-
+ -->

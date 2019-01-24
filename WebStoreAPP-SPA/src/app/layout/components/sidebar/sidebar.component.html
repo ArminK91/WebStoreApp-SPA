@@ -2,25 +2,25 @@
     <div class="list-group">
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>{{ 'Home' }}</span>
+            <span>{{ 'Radna ploča' }}</span>
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <i class="fa fa-plus"></i>&nbsp;
-                <span>{{ 'Products'}}</span>
+                <span>{{ 'Proizvodi'}}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
                         <a [routerLink]="['/createproduct']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Register new product'}}</span>
+                            <span>{{ 'Dodaj novi proizvod'}}</span>
                         </a>
                     </li>
                     <li>
                         <a routerLink="/usersproducts" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'All your products' }}</span>
+                            <span>{{ 'Vidi sve proizvode' }}</span>
                         </a>
                     </li>
                 </ul>

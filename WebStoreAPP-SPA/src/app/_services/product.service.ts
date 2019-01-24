@@ -1,31 +1,48 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
- 
-import { AppConfig } from '../app.config';
-import { Product } from '../_models/product';
+ import { Observable } from 'rxjs';
+ import { map, catchError } from 'rxjs/operators';
+import { IProduct } from '../_models/productModel';
 import { GeneralService } from '../_services/general.service';
 
 @Injectable()
 export class ProductService {
-    constructor(private http: Http, private config: AppConfig, private genServ: GeneralService) { }
+    constructor(private generalService: GeneralService) { }
  
-    getAllProductForUser() {
-        return this.http.get(this.genServ.prepareRequest() + '/api/products').map((response: Response) => response.json());
+    getAllProductForUser(): Observable<IProduct[]> {
+        return this.generalService.get('/api/products').pipe(
+            map((response => response as IProduct[]),
+            catchError((error =>  this.generalService.showError(error)))
+          ));
+        }
+    
+
+    getProductById(_id: number): Observable<IProduct> {
+        return this.generalService.get('/api/products/' + _id).pipe(
+            map((response => response as IProduct),
+            catchError((error =>  this.generalService.showError(error)))
+          ));
     }
  
-    getProductById(_id: number) {
-        return this.http.get(this.config.apiUrl + '/api/products/' + _id).map((response: Response) => response.json());
+    createProduct(product: IProduct): Observable<IProduct> {
+        return this.generalService.post('/api/products', product)
+        .pipe(map((response => response as IProduct),
+        catchError((error => this.generalService.showError(error)))
+        ));
     }
  
-    createProduct(product: Product) {
-        return this.http.post(this.config.apiUrl + '/api/products', product);
+    updateProduct(product: IProduct): Observable<IProduct> {
+        return this.generalService.put('/api/products', product)
+        .pipe(map((response => response as IProduct),
+        catchError((error => this.generalService.showError(error)))
+        ));
     }
  
-    updateProduct(product: Product) {
-        return this.http.put(this.config.apiUrl + '/api/products', product);
-    }
- 
-    deleteProduct(_id: number) {
-        return this.http.delete(this.config.apiUrl + '/api/products/' + _id);
+    deleteProduct(_id: number): Observable<any> {
+        return this.generalService.delete('/api/products/' + _id)
+        .pipe(map((response => response as any),
+        catchError((error => this.generalService.showError(error)))
+        ));
     }
 }
+
+

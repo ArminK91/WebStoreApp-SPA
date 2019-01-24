@@ -5,15 +5,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import {
-    ChatComponent
+    ChatComponent, CreateproductComponent
 } from './components';
-import { StatModule } from '../../shared';
 import { ProductlistComponent } from './productlist/productlist.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { PreviewproductComponent } from './previewproduct/previewproduct.component';
 import { SharedModule } from '../../shared/shared/shared.module';
-import { MatRippleModule } from '@angular/material';
-
+import { UserproductlistComponent } from './components/userproductlist/userproductlist.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DxNumberBoxModule, DxDataGridModule } from 'devextreme-angular';
 
 
 @NgModule({
@@ -23,15 +23,19 @@ import { MatRippleModule } from '@angular/material';
         NgbAlertModule.forRoot(),
         NgbModule.forRoot(),
         DashboardRoutingModule,
-        SharedModule,
-        StatModule,
-        MatRippleModule,
+        FormsModule,
+        DxNumberBoxModule,
+        DxDataGridModule,
+        ReactiveFormsModule,
+        SharedModule
     ],
    
     declarations: [
         DashboardComponent,
         ProductlistComponent,
+        CreateproductComponent,
         ProductItemComponent,
+        UserproductlistComponent,
         PreviewproductComponent,
         ChatComponent
     ]
